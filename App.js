@@ -1,12 +1,22 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { Button, StyleSheet, Text, View } from 'react-native';
+import {SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
-export default function App() {
+
+export default function App() 
+{
+  const clickHandler = () =>{
+    console.log("Clicked!")
+  }
   return (
-    <View style={styles.container}>
-      <Text>Welcome!</Text>
+    <SafeAreaProvider style={styles.container}>
+      <SafeAreaView>
+      <Text style={styles.label}>Welcome!</Text>
       <StatusBar style="auto" />
-    </View>
+
+      <Button title='Click Me' onPress={clickHandler}/> 
+      </SafeAreaView>
+    </SafeAreaProvider>
   );
 }
 
@@ -14,7 +24,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    
   },
+  label:{
+    color: 'black',
+    fontSize: 18,
+    
+  }
 });
