@@ -3,6 +3,11 @@ import colours from "../constants/colours";
 import { FontAwesome } from '@expo/vector-icons';
 
 const Input = props =>{
+
+    const onChangeText = text =>{
+        props.onInputChanged(props.id, text);
+    }
+
     return <View style={styles.container}>
         <Text style={styles.label}>{props.label}</Text>
         <View style={styles.inputContainer}>
@@ -12,13 +17,17 @@ const Input = props =>{
             style={styles.icon}/>
 
             }
-            <TextInput style={styles.input}/>
+            <TextInput 
+            {...props }
+            
+            style={styles.input}
+            onChangeText = {onChangeText}/>
 
         </View>
         {
             props.errorText &&
             <View style={styles.errorContainer}>
-            <Text style={styles.errorText}>{props.errorText}</Text>
+            <Text style={styles.errorText}>{props.errorText[0]}</Text>
 
         </View>}
     </View>
